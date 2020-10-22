@@ -180,30 +180,47 @@ Defaults to `push`.
 
 A string that can be used as a fallback for `headerTitle`.
 
-### Status bar managment
+### Status bar and orientation managment
 
-With `native-stack`, the status bar can be managed by `UIViewController` on iOS. It requires:
+With `native-stack`, the status bar and screen orientation can be managed by `UIViewController` on iOS. It requires:
 
-1. Enabling (or deleting) `View controller-based status bar appearance` in your Info.plist file (it disables the option to use React Native's `StatusBar` component). 
-2. Adding `#import <RNScreens/UIViewController+RNScreens.h>` in your project's `AppDelegate.m` (you can see this change applied in the `AppDelegate.m` of `Example` project).
+1. For status bar managment: enabling (or deleting) `View controller-based status bar appearance` in your Info.plist file (it disables the option to use React Native's `StatusBar` component). 
+2. For both status bar and orientation managment: adding `#import <RNScreens/UIViewController+RNScreens.h>` in your project's `AppDelegate.m` (you can see this change applied in the `AppDelegate.m` of `Example` project).
+
+On Android, no additional setup is required.
 
 #### `statusBarStyle`
 
-Sets the status bar color (similar to the `StatusBar` component). Possible values: `auto` (based on [user interface style](https://developer.apple.com/documentation/uikit/uiuserinterfacestyle?language=objc), `inverted` (colors opposite to `auto`), `light`, `dark`.
+Sets the status bar color (similar to the `StatusBar` component). Possible values: `auto` (based on [user interface style](https://developer.apple.com/documentation/uikit/uiuserinterfacestyle?language=objc), `inverted` (colors opposite to `auto`), `light`, `dark`. Only supported on iOS.
 
 Defaults to `auto`.
 
 #### `statusBarAnimation`
 
-Sets the status bar animation (similar to the `StatusBar` component). Possible values: `fade`, `none`, `slide`.
+Sets the status bar animation (similar to the `StatusBar` component). Possible values: `fade`, `none`, `slide`. Only supported on iOS.
 
 Defaults to `fade`.
 
 #### `statusBarHidden`
 
-Boolean saying if the status bar for this screen is hidden.
+Boolean saying if the status bar for this screen is hidden. Only supported on iOS.
 
 Defaults to `false`.
+
+#### `screenOrientation`
+
+Sets the current screen's available orientations and forces rotation if current orientation is not included. Possible values:
+
+- `default` - on iOS, it resolves to [UIInterfaceOrientationMaskAllButUpsideDown](https://developer.apple.com/documentation/uikit/uiinterfaceorientationmask/uiinterfaceorientationmaskallbutupsidedown?language=objc). On Android, this lets the system decide the best orientation.
+- `all`
+- `portrait`
+- `portrait_up`
+- `portrait_down`
+- `landscape`
+- `landscape_left`
+- `landscape_right`
+
+Defaults to `default`.
 
 ### Events
 
