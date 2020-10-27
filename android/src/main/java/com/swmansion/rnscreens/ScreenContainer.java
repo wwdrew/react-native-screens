@@ -328,6 +328,7 @@ public class ScreenContainer<T extends ScreenFragment> extends ViewGroup {
     mFragmentManager.executePendingTransactions();
 
     performUpdate();
+    updateChildFragments();
   }
 
   protected void performUpdate() {
@@ -375,5 +376,12 @@ public class ScreenContainer<T extends ScreenFragment> extends ViewGroup {
       screenFragment.getScreen().setTransitioning(transitioning);
     }
     tryCommitTransaction();
+  }
+
+  protected void updateChildFragments() {
+    for (int i = 0, size = mScreenFragments.size(); i < size; i++) {
+      ScreenFragment screenFragment = mScreenFragments.get(i);
+      screenFragment.onContainerUpdate();
+    }
   }
 }

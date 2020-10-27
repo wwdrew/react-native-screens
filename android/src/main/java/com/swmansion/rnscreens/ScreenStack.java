@@ -236,9 +236,12 @@ public class ScreenStack extends ScreenContainer<ScreenStackFragment> {
     if (mTopScreen != null) {
       setupBackHandlerIfNeeded(mTopScreen);
     }
+  }
 
+  @Override
+  protected void updateChildFragments() {
     for (ScreenStackFragment screen : mStack) {
-      screen.onStackUpdate();
+      screen.onContainerUpdate();
     }
   }
 
